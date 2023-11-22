@@ -56,43 +56,49 @@
 </head>
 <body>
     
-<div class="container-fluid pt-3">
-        <div class="row d-flex ">
-            <?php  
-            if($filter != 'no'){
-                foreach($hotels as $hotel ){
-                    if($hotel['parking'] === true){
-                        ?><div class="col-3 p-2">
-                        <div class="card ">
-                            <ul>
-                                <li>Nome Hotel: <?php echo $hotel['name']; ?></li>
-                                <li>Descrizione: <?php echo $hotel['description']; ?></li>
-                                <li>Voto: <?php echo $hotel['vote']; ?> su 5</li>
-                                <li>Distanza dal centro: <?php echo $hotel['distance_to_center']; ?> Km</li>
-                            </ul>
-                        </div>
-                    </div>    
-                    <?php  
+<div class="container pt-3">
+    <div class="row d-flex ">
+        <table >
+            <thead>
+                <tr>
+                    <th>Nome Hotel</th>
+                    <th>Descrizione</th>
+                    <th>Voto</th>
+                    <th>Distanza dal centro</th>
+                    <th>parcheggio</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php
+                if($filter != 'no'){
+                    foreach($hotels as $hotel ){
+                        if($hotel['parking'] === true){
+                            ?>
+                            <tr>
+                                <td><?php echo $hotel['name']; ?></td>
+                                <td><?php echo $hotel['description']; ?></td>
+                                <td><?php echo $hotel['vote']; ?> su 5</td>
+                                <td><?php echo $hotel['distance_to_center']; ?> Km</td>
+                                <td>?</td>
+                            </tr>  
+                            <?php  
+                        }
+                    }
+                }else{
+                    foreach($hotels as $hotel ){
+                        ?>
+                        <tr>
+                            <td><?php echo $hotel['name']; ?></td>
+                            <td><?php echo $hotel['description']; ?></td>
+                            <td><?php echo $hotel['vote']; ?> su 5</td>
+                            <td><?php echo $hotel['distance_to_center']; ?> Km</td>
+                            <td>?</td>
+                        </tr>  
+                        <?php  
                     }
                 }
-            }else{
-                foreach($hotels as $hotel ){
-                        ?><div class="col-3 p-2">
-                        <div class="card ">
-                            <ul>
-                                <li>Nome Hotel: <?php echo $hotel['name']; ?></li>
-                                <li>Descrizione: <?php echo $hotel['description']; ?></li>
-                                <li>Voto: <?php echo $hotel['vote']; ?> su 5</li>
-                                <li>Distanza dal centro: <?php echo $hotel['distance_to_center']; ?> Km</li>
-                            </ul>
-                        </div>
-                    </div>    
-                    <?php  
-                }
-            }
-                
             ?>  
-        </div>
-    </div>
+            </tbody>
+        </table>          
 </body>
 </html>
