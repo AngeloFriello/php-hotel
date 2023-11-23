@@ -58,34 +58,30 @@
     
 <div class="container pt-3">
     <div class="row d-flex ">
-        <table >
-            <thead>
-                <tr>
-                    <th>Nome Hotel</th>
-                    <th>Descrizione</th>
-                    <th>Voto</th>
-                    <th>Distanza dal centro</th>
-                    <th>parcheggio</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php
-                if($filter != 'no'){
-                    foreach($hotels as $hotel ){
-                        if($hotel['parking'] === true){
-                            ?>
-                            <tr>
-                                <td><?php echo $hotel['name']; ?></td>
-                                <td><?php echo $hotel['description']; ?></td>
-                                <td><?php echo $hotel['vote']; ?> su 5</td>
-                                <td><?php echo $hotel['distance_to_center']; ?> Km</td>
-                                <td>?</td>
-                            </tr>  
-                            <?php  
-                        }
-                    }
-                }else{
-                    foreach($hotels as $hotel ){
+
+    <h1>HOTEL</h1>
+
+    <form action="form.php" class="p-4" method="GET">
+        <input id="has_parking" type="checkbox" name="filter" >
+        <label for="has_parking">con parcheggio</label>
+        <input type="submit" value="spedisci">
+    </form>
+
+    <table >
+        <thead>
+            <tr>
+                <th>Nome Hotel</th>
+                <th>Descrizione</th>
+                <th>Voto</th>
+                <th>Distanza dal centro</th>
+                <th>parcheggio</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php
+            if($filter != 'no'){
+                foreach($hotels as $hotel ){
+                    if($hotel['parking'] === true){
                         ?>
                         <tr>
                             <td><?php echo $hotel['name']; ?></td>
@@ -97,8 +93,21 @@
                         <?php  
                     }
                 }
-            ?>  
-            </tbody>
-        </table>          
+            }else{
+                foreach($hotels as $hotel ){
+                    ?>
+                    <tr>
+                        <td><?php echo $hotel['name']; ?></td>
+                        <td><?php echo $hotel['description']; ?></td>
+                        <td><?php echo $hotel['vote']; ?> su 5</td>
+                        <td><?php echo $hotel['distance_to_center']; ?> Km</td>
+                        <td>?</td>
+                    </tr>  
+                    <?php  
+                }
+            }
+        ?>  
+        </tbody>
+    </table>          
 </body>
 </html>
